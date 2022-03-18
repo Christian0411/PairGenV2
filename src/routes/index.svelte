@@ -18,8 +18,14 @@
 	let addUserValue = '';
 
 	const deleteMember = (event) => {
-		const memberName = event.detail.name;
-		members = members.filter((member) => member.name !== memberName);
+		const id = event.detail.id;
+		members = members.filter((member) => member.id !== id);
+
+		pairs.forEach((pair, i) => {
+			pairs[i] = pairs[i].filter((member) => member.id !== id);
+		});
+		members = [...members];
+		pairs = [...pairs];
 	};
 	const editMember = (event) => {
 		const newName = event.detail.name;
@@ -42,7 +48,7 @@
 			addUserValue = '';
 		}
 	};
-	const membersPerPair = 1;
+	const membersPerPair = 2;
 
 	const generatePairs = () => {
 		let temp = [...members];
@@ -54,7 +60,7 @@
 					break;
 				}
 				const member = getRandom(temp);
-				temp = temp.filter((item) => item.name !== member.name);
+				temp = temp.filter((item) => item.id !== member.id);
 				group.push(member);
 			}
 			tempPairs = [...tempPairs, group];

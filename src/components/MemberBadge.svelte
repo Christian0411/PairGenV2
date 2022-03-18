@@ -14,7 +14,7 @@
 	let editing = false && editable;
 	function handleDelete(event) {
 		dispatch('delete', {
-			name
+			id
 		});
 	}
 	function handleKeyUp(event) {
