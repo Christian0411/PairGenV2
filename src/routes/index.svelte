@@ -3,7 +3,7 @@
 	import * as uuidv4 from 'uuid';
 
 	import MemberBadge from '../components/MemberBadge.svelte';
-
+	import Dice from '../components/Dice.svelte';
 	let members = [
 		{ id: uuidv4.v4(), name: 'test' },
 		{ id: uuidv4.v4(), name: 'test1' },
@@ -71,9 +71,13 @@
 
 <div class="px-5vw text-white flex">
 	<div
-		class="bg-slate-600 w-60 max-h-80vh overflow-auto shadow-sm rounded-lg  shadow-black p-2 flex flex-col"
+		class="bg-slate-600 w-60 max-h-80vh overflow-scroll shadow-sm rounded-lg  shadow-black p-2 flex flex-col"
 	>
-		<h1 class="text-2xl">Members</h1>
+		<div class="flex flex-row place-content-between mb-3">
+			<h1 class="text-2xl">Members</h1>
+			<button on:click={generatePairs}><Dice width="30px" height="30px" /></button>
+		</div>
+
 		<div class="flex m-2 rounded-xl text-center shadow-sm shadow-black p-2 bg-teal-700">
 			<input
 				class="flex-1 bg-teal-700 outline-none text-center"
@@ -86,7 +90,6 @@
 		{#each members as { name, id }}
 			<MemberBadge editable={true} on:delete={deleteMember} on:edit={editMember} {name} {id} />
 		{/each}
-		<button on:click={generatePairs}>Generate</button>
 	</div>
 
 	<div class="flex ml-10 max-w-screen-lg flex-wrap h-1">
