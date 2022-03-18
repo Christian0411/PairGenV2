@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher, tick } from 'svelte';
-	const dispatch = createEventDispatcher();
-	let ref;
 	export let value;
 
 	function init(el) {

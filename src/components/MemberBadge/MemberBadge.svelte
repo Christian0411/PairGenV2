@@ -1,22 +1,20 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
-	import Hoverable from './Hoverable.svelte';
-	import { selectTextOnFocus } from '../helpers/inputDirectives.ts';
+	import { removeMember, updateMemberName } from '../../store/teamStore';
+	import Hoverable from '@components/Hoverable/Hoverable.svelte';
 	import { faTrash, faPencil, faHand } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa/src/fa.svelte';
-	import AutoFocusInput from './AutoFocusInput.svelte';
+	import AutoFocusInput from '@components/AutoFocusInput/AutoFocusInput.svelte';
 
-	export let name;
 	export let editable;
-	export let id;
+	export let member;
 
-	const dispatch = createEventDispatcher();
+	let edittedNameValue = '';
 	let editing = false && editable;
+
 	function handleDelete(event) {
-		dispatch('delete', {
-			id
-		});
+		removeMember(member);
 	}
+
 	function handleKeyUp(event) {
 		if (event.keyCode === 13) {
 			dispatchEditEvent();
@@ -24,12 +22,7 @@
 	}
 	function dispatchEditEvent() {
 		editing = false;
-		if (name.trim() != '') {
-			dispatch('edit', {
-				name,
-				id
-			});
-		}
+		updateMemberName(member, edittedNameValue);
 	}
 </script>
 
@@ -44,12 +37,12 @@
 				<button on:click={handleDelete} class="flex justify-center"><Fa icon={faTrash} /></button>
 			</div>
 		{:else if !editing}
-			{name}
+			{member.name}
 		{/if}
 		{#if editing}
 			<AutoFocusInput
 				class="flex-1 bg-teal-700 outline-none text-center"
-				bind:value={name}
+				bind:value={edittedNameValue}
 				on:keyup={handleKeyUp}
 				on:blur={dispatchEditEvent}
 			/>
