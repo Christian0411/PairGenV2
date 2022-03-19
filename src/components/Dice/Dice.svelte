@@ -151,3 +151,14 @@
 	<g />
 	<g />
 </svg>
+
+<style>
+	svg {
+		transform: rotate(360deg);
+		transition: transform 0.5s;
+	}
+	svg:active {
+		transform: rotate(0deg);
+		transition: 0s;
+	}
+</style>
