@@ -1,8 +1,8 @@
 <script>
 	import { removeMember, updateMemberName } from '../../store/teamStore';
 	import Hoverable from '@components/Hoverable/Hoverable.svelte';
-	import { faTrash, faPencil, faHand } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa/src/fa.svelte';
+	import { faTrash, faPencil, faHand } from '@fortawesome/free-solid-svg-icons/index.es';
 	import AutoFocusInput from '@components/AutoFocusInput/AutoFocusInput.svelte';
 
 	export let editable;

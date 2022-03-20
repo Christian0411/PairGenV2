@@ -1,6 +1,6 @@
 <script>
-	import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa/src/fa.svelte';
+	import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons/index.es';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { getRandom } from '../../helpers/helpers';
