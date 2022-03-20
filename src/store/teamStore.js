@@ -17,7 +17,7 @@ export let members = writable([
 
 function getId() {
 	const id = uuidv4.v4();
-	return { id: id, originalId: id };
+	return { id: id, originalId: id, isCopy: false };
 }
 
 export let pairs = writable([{ locked: false, members: [] }]);
@@ -53,7 +53,7 @@ export function generatePairs() {
 // CRUD operations on `members` and `pairs`
 export function addMember(name) {
 	const id = uuidv4.v4();
-	members.update((members) => [{ id: id, name: name, originalId: id }, ...members]);
+	members.update((members) => [{ id: id, name: name, originalId: id, isCopy: false }, ...members]);
 }
 
 export function removeMember(memberToRemove) {
@@ -71,16 +71,18 @@ export function setPair(pair, pairIndex) {
 }
 
 export function removeMemberFromPair(memberToRemove) {
+	console.log({ memberToRemove });
 	// @ts-ignore
 	pairs.update((pairs) => {
 		const newPairs = pairs
 			.map((pair) => ({
 				...pair,
-				members: pair.members.filter((member) => member.id !== memberToRemove.id)
+				members: pair.members.filter((member) => member.originalId !== memberToRemove.originalId)
 			}))
 			.filter((pair) => pair.members.length !== 0);
 
 		newPairs.push({ locked: false, members: [] });
+		console.log(newPairs);
 		return newPairs;
 	});
 }
@@ -89,7 +91,7 @@ export function updateMemberName(member, newName) {
 	member.name = newName;
 	pairs.update((pairs) =>
 		pairs.map((pair) => {
-			let memberInPair = pair.find((m) => m.id === member.id || m.originalId === member.originalId);
+			let memberInPair = pair.members.find((m) => m.originalId === member.originalId);
 			if (memberInPair) {
 				memberInPair.name = newName;
 			}
