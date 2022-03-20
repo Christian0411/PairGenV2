@@ -1,11 +1,12 @@
 <script>
 	import { dndzone } from 'svelte-dnd-action';
-	import { members, pairs } from '../../store/teamStore.js';
+	import { pairs } from '../../store/teamStore.js';
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
 	import { flip } from 'svelte/animate';
 
 	export let pair;
 	export let id;
+
 	function handleDndConsider(e) {
 		const pairIndex = e.target.id;
 		$pairs[pairIndex] = e.detail.items;

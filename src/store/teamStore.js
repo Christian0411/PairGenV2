@@ -14,6 +14,8 @@ export let members = writable([
 
 export let pairs = writable([[]]);
 
+export let hotKeyPressed = writable(false);
+
 // CRUD operations on `members` and `pairs`
 export function addMember(name) {
 	members.update((members) => [{ id: uuidv4.v4(), name: name }, ...members]);

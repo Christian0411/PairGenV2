@@ -1,11 +1,15 @@
 <script lang="ts">
 	import { getRandom } from '../helpers/helpers';
-	import { members, pairs } from '../store/teamStore.js';
+	import { members, pairs, hotKeyPressed } from '../store/teamStore.js';
 	import MembersPanel from '@components/MembersPanel/MembersPanel.svelte';
 	import PairCard from '@components/PairCard/PairCard.svelte';
 
 	const membersPerPair = 2;
 
+	$: {
+		console.log('hotKeyPressed changed', $hotKeyPressed);
+		if ($hotKeyPressed) generatePairs();
+	}
 	const generatePairs = () => {
 		let temp = [...$members];
 		let tempPairs = [];
