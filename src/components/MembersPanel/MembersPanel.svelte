@@ -5,7 +5,6 @@
 	import { dndzone, TRIGGERS, SHADOW_ITEM_MARKER_PROPERTY_NAME } from 'svelte-dnd-action';
 
 	import { members, addMember, pairs, removeMemberFromPair } from '../../store/teamStore.js';
-	import { loop_guard } from 'svelte/internal';
 
 	let addMemberValue = '';
 	let isMemberBeingEdited = false;
