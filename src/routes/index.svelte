@@ -16,6 +16,7 @@
 		const pairIndex = e.target.id;
 		$pairs[pairIndex] = e.detail.items;
 		$pairs = $pairs.filter((pair) => pair.length != 0);
+		$pairs = [...$pairs, []];
 	}
 
 	const membersPerPair = 2;
@@ -35,7 +36,7 @@
 			}
 			tempPairs = [...tempPairs, group];
 		}
-		pairs.set(tempPairs);
+		pairs.set([...tempPairs, []]);
 	};
 </script>
 
@@ -52,19 +53,28 @@
 					id={`${i}`}
 					use:dndzone={{
 						items: pair,
-						flipDurationMs: 300,
+						flipDurationMs: 100,
 						centreDraggedOnCursor: true,
-						dropTargetStyle: {}
+						dropTargetStyle: {},
+						dragDisabled: pair.length === 0
 					}}
 					on:finalize={handleDndFinalize}
 					on:consider={handleDndConsider}
 					class="flex flex-col gap-y-2"
 				>
-					{#each pair as member (member.id)}
-						<div animate:flip={{ duration: 300 }}>
-							<MemberBadge {member} editable={false} />
+					{#if pair.length === 0}
+						<div
+							class={`p-2 rounded-xl text-center shadow-sm border-2 border-gray-800 border-dotted bg-transparent `}
+						>
+							+
 						</div>
-					{/each}
+					{:else}
+						{#each pair as member (member.id)}
+							<div animate:flip={{ duration: 100 }}>
+								<MemberBadge {member} editable={false} />
+							</div>
+						{/each}
+					{/if}
 				</div>
 			</div>
 		{/each}

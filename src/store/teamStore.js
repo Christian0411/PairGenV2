@@ -4,12 +4,15 @@ import * as uuidv4 from 'uuid';
 export const count = writable(0);
 
 export let members = writable([
+	{ id: uuidv4.v4(), name: 'Meredith' },
+	{ id: uuidv4.v4(), name: 'Vinay' },
+	{ id: uuidv4.v4(), name: 'Eric' },
+	{ id: uuidv4.v4(), name: 'Ari' },
 	{ id: uuidv4.v4(), name: 'Chris' },
-	{ id: uuidv4.v4(), name: 'Oscar' },
-	{ id: uuidv4.v4(), name: 'Caro' }
+	{ id: uuidv4.v4(), name: 'Thaddeus' }
 ]);
 
-export let pairs = writable([]);
+export let pairs = writable([[]]);
 
 // CRUD operations on `members` and `pairs`
 export function addMember(name) {
@@ -22,11 +25,13 @@ export function removeMember(memberToRemove) {
 }
 
 export function removeMemberFromPair(memberToRemove) {
-	pairs.update((pairs) =>
-		pairs
+	pairs.update((pairs) => {
+		const newPairs = pairs
 			.map((pair) => pair.filter((member) => member.id !== memberToRemove.id))
-			.filter((pair) => pair.length != 0)
-	);
+			.filter((pair) => pair.length !== 0);
+		newPairs.push([]);
+		return newPairs;
+	});
 }
 
 export function updateMemberName(member, newName) {

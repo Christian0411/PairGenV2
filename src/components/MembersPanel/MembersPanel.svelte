@@ -64,7 +64,7 @@
 		class="flex flex-col gap-y-2"
 		use:dndzone={{
 			items: $members,
-			flipDurationMs: 300,
+			flipDurationMs: 100,
 			centreDraggedOnCursor: true,
 			dropTargetStyle: {},
 			dragDisabled: isMemberBeingEdited,
@@ -74,7 +74,7 @@
 		on:consider={handleDndConsider}
 	>
 		{#each $members as member (member.id)}
-			<div animate:flip={{ duration: 300 }}>
+			<div animate:flip={{ duration: 100 }}>
 				<MemberBadge
 					editable={true}
 					isEditing={(editing) => (isMemberBeingEdited = editing)}
