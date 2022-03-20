@@ -2,7 +2,6 @@
 	let hovering;
 
 	function enter() {
-		console.log('enter');
 		hovering = true;
 	}
 

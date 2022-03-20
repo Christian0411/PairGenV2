@@ -2,12 +2,7 @@
 	import { flip } from 'svelte/animate';
 	import Dice from '@components/Dice/Dice.svelte';
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
-	import {
-		dndzone,
-		TRIGGERS,
-		SHADOW_ITEM_MARKER_PROPERTY_NAME,
-		DRAGGED_ELEMENT_ID
-	} from 'svelte-dnd-action';
+	import { dndzone, TRIGGERS, SHADOW_ITEM_MARKER_PROPERTY_NAME } from 'svelte-dnd-action';
 
 	import { members, addMember } from '../../store/teamStore.js';
 	import { loop_guard } from 'svelte/internal';
@@ -25,7 +20,6 @@
 	function handleDndConsider(e) {
 		const { trigger, id } = e.detail.info;
 		if (trigger === TRIGGERS.DRAG_STARTED) {
-			console.warn(`copying ${id}`);
 			const idx = $members.findIndex((item) => item.id === id);
 			const newId = `${id}_copy_${Math.round(Math.random() * 100000)}`;
 			// the line below was added in order to be compatible with version svelte-dnd-action 0.7.4 and above
@@ -46,11 +40,6 @@
 			$members = [...$members];
 			shouldIgnoreDndEvents = false;
 		}
-	}
-
-	function transformDraggedElement(draggedEl, data, index) {
-		console.log('HELLO');
-		draggedEl.querySelector('div').style.transform = 'rotate(10deg)';
 	}
 </script>
 
@@ -78,7 +67,7 @@
 			centreDraggedOnCursor: true,
 			dropTargetStyle: {},
 			dragDisabled: isMemberBeingEdited,
-			transformDraggedElement
+			dropFromOthersDisabled: true
 		}}
 		on:finalize={handleDndFinalize}
 		on:consider={handleDndConsider}
