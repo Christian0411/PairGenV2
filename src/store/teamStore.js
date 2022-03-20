@@ -3,24 +3,18 @@ import { writable } from 'svelte/store';
 import { get } from 'svelte/store';
 
 import * as uuidv4 from 'uuid';
-
-export const count = writable(0);
-
-export let members = writable([
-	{ ...getId(), name: 'Meredith' },
-	{ ...getId(), name: 'Vinay' },
-	{ ...getId(), name: 'Eric' },
-	{ ...getId(), name: 'Ari' },
-	{ ...getId(), name: 'Chris' },
-	{ ...getId(), name: 'Thaddeus' }
-]);
-
-function getId() {
-	const id = uuidv4.v4();
-	return { id: id, originalId: id, isCopy: false };
+import { browser } from '$app/env';
+let membersFromStorage = [];
+let pairsFromStorage = [];
+if (browser) {
+	membersFromStorage = JSON.parse(localStorage.getItem('members'));
+	pairsFromStorage = JSON.parse(localStorage.getItem('pairs'));
 }
 
-export let pairs = writable([{ locked: false, members: [] }]);
+export const count = writable(0);
+export let members = writable(membersFromStorage || []);
+
+export let pairs = writable(pairsFromStorage || [{ locked: false, members: [] }]);
 
 export let hotKeyPressed = writable(false);
 let membersPerPair = 2;
@@ -46,8 +40,11 @@ export function generatePairs() {
 		tempPairs = [...tempPairs, group];
 	}
 	pairs.set([...tempPairs, { locked: false, members: [] }]);
-	console.log({ members: get(members) });
-	console.log({ pairs: get(pairs) });
+}
+
+export function togglePairLock(pair) {
+	pair.locked = !pair.locked;
+	pairs.set(get(pairs));
 }
 
 // CRUD operations on `members` and `pairs`

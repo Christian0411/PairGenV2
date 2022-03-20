@@ -2,6 +2,7 @@
 	import { pairs, hotKeyPressed, generatePairs } from '../store/teamStore.js';
 	import MembersPanel from '@components/MembersPanel/MembersPanel.svelte';
 	import PairCard from '@components/PairCard/PairCard.svelte';
+	import * as storage from '../storage/storage';
 
 	$: {
 		if ($hotKeyPressed) generatePairs();

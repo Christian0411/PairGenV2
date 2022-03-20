@@ -12,7 +12,8 @@
 		{ content: 'You can move a member to the pair section before rolling' },
 		{ content: 'Clicking the pencil icon lets you edit a members name' },
 		{ content: 'Pressing CMD/CTRL (Windows) + Enter will generate pairs' },
-		{ content: 'Members can be dragged between pairs' }
+		{ content: 'Members can be dragged between pairs' },
+		{ content: 'Members of locked pairs will not be moved after generation' }
 	];
 	let tip = getRandom(tips);
 	onMount(async () => {

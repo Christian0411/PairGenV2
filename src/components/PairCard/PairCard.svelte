@@ -1,6 +1,6 @@
 <script>
 	import { dndzone } from 'svelte-dnd-action';
-	import { pairs, setPair } from '../../store/teamStore.js';
+	import { pairs, setPair, togglePairLock } from '../../store/teamStore.js';
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
 	import { flip } from 'svelte/animate';
 	import Fa from 'svelte-fa/src/fa.svelte';
@@ -19,7 +19,7 @@
 	}
 	function handleLock(e) {
 		console.log('Hello!');
-		pair.locked = !pair.locked;
+		togglePairLock(pair);
 	}
 </script>
 
@@ -45,7 +45,7 @@
 			flipDurationMs: 100,
 			centreDraggedOnCursor: true,
 			dropTargetStyle: {},
-			dragDisabled: pair.length === 0
+			dragDisabled: pair.members.length === 0
 		}}
 		on:finalize={handleDndFinalize}
 		on:consider={handleDndConsider}
