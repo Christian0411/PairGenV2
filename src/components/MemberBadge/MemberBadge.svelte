@@ -7,8 +7,9 @@
 
 	export let editable;
 	export let member;
+	export let isEditing;
 
-	let edittedNameValue = '';
+	let editedNameValue = '';
 	let editing = false && editable;
 
 	function handleDelete(event) {
@@ -22,27 +23,32 @@
 	}
 	function dispatchEditEvent() {
 		editing = false;
-		updateMemberName(member, edittedNameValue);
+		isEditing(editing);
+		updateMemberName(member, editedNameValue || member.name);
 	}
 </script>
 
 <Hoverable let:hovering={active}>
-	<div class={`m-2 rounded-xl text-center shadow-sm shadow-black p-2 bg-teal-700 `}>
+	<div class={`p-2 rounded-xl text-center shadow-sm shadow-black  bg-teal-700 `}>
 		{#if active && !editing && editable}
-			<div class="grid grid-cols-3 p-2 h-6 content-center">
-				<button on:click={() => (editing = true)} class="flex justify-center"
-					><Fa icon={faPencil} /></button
+			<div class="flex justify-center content-center">
+				<button
+					class="mr-4"
+					on:click={() => {
+						editing = true;
+						isEditing(editing);
+					}}><Fa icon={faPencil} /></button
 				>
-				<button class="flex justify-center border-l-2 border-r-2"><Fa icon={faHand} /></button>
-				<button on:click={handleDelete} class="flex justify-center"><Fa icon={faTrash} /></button>
+				<div>{member.name}</div>
+				<button class="ml-4" on:click={handleDelete}><Fa icon={faTrash} /></button>
 			</div>
 		{:else if !editing}
 			{member.name}
 		{/if}
 		{#if editing}
 			<AutoFocusInput
-				class="flex-1 bg-teal-700 outline-none text-center"
-				bind:value={edittedNameValue}
+				class="bg-teal-700 outline-none text-center"
+				bind:value={editedNameValue}
 				on:keyup={handleKeyUp}
 				on:blur={dispatchEditEvent}
 			/>

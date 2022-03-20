@@ -1,19 +1,23 @@
 <script lang="ts">
+	import { flip } from 'svelte/animate';
 	import { getRandom } from '../helpers/helpers';
 	import { members, pairs } from '../store/teamStore.js';
-	import * as uuidv4 from 'uuid';
+	import { dndzone } from 'svelte-dnd-action';
 
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
 	import MembersPanel from '@components/MembersPanel/MembersPanel.svelte';
 
-	let addUserValue = '';
+	function handleDndConsider(e) {
+		const pairIndex = e.target.id;
+		$pairs[pairIndex] = e.detail.items;
+		$pairs = $pairs;
+	}
+	function handleDndFinalize(e) {
+		const pairIndex = e.target.id;
+		$pairs[pairIndex] = e.detail.items;
+		$pairs = $pairs;
+	}
 
-	const addUser = (e) => {
-		if (e.keyCode === 13 && addUserValue.trim() != '') {
-			members.update((members) => [{ id: uuidv4.v4(), name: addUserValue }, ...members]);
-			addUserValue = '';
-		}
-	};
 	const membersPerPair = 2;
 
 	const generatePairs = () => {
@@ -41,12 +45,27 @@
 	<div class="flex ml-10 max-w-screen-lg flex-wrap h-1">
 		{#each $pairs as pair, i}
 			<div
-				class="ml-4 mb-10 bg-slate-600 w-60 shadow-sm rounded-lg self-start shadow-black p-2 flex flex-col"
+				class="transition-translate ml-4 mb-10 bg-slate-600 w-60 shadow-sm rounded-lg self-start shadow-black p-2 flex flex-col gap-y-2"
 			>
 				<span>Pair {i}</span>
-				{#each pair as member}
-					<MemberBadge {member} editable={false} />
-				{/each}
+				<div
+					id={`${i}`}
+					use:dndzone={{
+						items: pair,
+						flipDurationMs: 300,
+						centreDraggedOnCursor: true,
+						dropTargetStyle: {}
+					}}
+					on:finalize={handleDndFinalize}
+					on:consider={handleDndConsider}
+					class="flex flex-col gap-y-2"
+				>
+					{#each pair as member (member.id)}
+						<div animate:flip={{ duration: 300 }}>
+							<MemberBadge {member} editable={false} />
+						</div>
+					{/each}
+				</div>
 			</div>
 		{/each}
 		<div />
