@@ -17,10 +17,16 @@ export function addMember(name) {
 }
 
 export function removeMember(memberToRemove) {
-	pairs.update((pairs) =>
-		pairs.map((pair) => pair.filter((member) => member.id !== memberToRemove.id))
-	);
+	removeMemberFromPair(memberToRemove);
 	members.update((members) => members.filter((member) => memberToRemove.id !== member.id));
+}
+
+export function removeMemberFromPair(memberToRemove) {
+	pairs.update((pairs) =>
+		pairs
+			.map((pair) => pair.filter((member) => member.id !== memberToRemove.id))
+			.filter((pair) => pair.length != 0)
+	);
 }
 
 export function updateMemberName(member, newName) {

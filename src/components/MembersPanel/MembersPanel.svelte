@@ -4,7 +4,7 @@
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
 	import { dndzone, TRIGGERS, SHADOW_ITEM_MARKER_PROPERTY_NAME } from 'svelte-dnd-action';
 
-	import { members, addMember } from '../../store/teamStore.js';
+	import { members, addMember, pairs, removeMemberFromPair } from '../../store/teamStore.js';
 	import { loop_guard } from 'svelte/internal';
 
 	let addMemberValue = '';
@@ -21,6 +21,7 @@
 		const { trigger, id } = e.detail.info;
 		if (trigger === TRIGGERS.DRAG_STARTED) {
 			const idx = $members.findIndex((item) => item.id === id);
+			removeMemberFromPair($members[idx]);
 			const newId = `${id}_copy_${Math.round(Math.random() * 100000)}`;
 			// the line below was added in order to be compatible with version svelte-dnd-action 0.7.4 and above
 			e.detail.items = e.detail.items.filter((item) => !item[SHADOW_ITEM_MARKER_PROPERTY_NAME]);
