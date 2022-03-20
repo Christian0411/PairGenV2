@@ -15,7 +15,7 @@
 	function handleDndFinalize(e) {
 		const pairIndex = e.target.id;
 		$pairs[pairIndex] = e.detail.items;
-		$pairs = $pairs;
+		$pairs = $pairs.filter((pair) => pair.length != 0);
 	}
 
 	const membersPerPair = 2;
