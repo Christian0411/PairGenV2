@@ -7,14 +7,14 @@
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { encodePairs } from '../../helpers/helpers';
 
-	let shareLink = 'http://localhost:3000/?code=';
+	let shareLink = 'https://gallant-meninsky-fdbcf8.netlify.app/?code=';
 	let isCopySuccessful = false;
 	async function handleShareClick(e) {
 		if ($pairs.filter((pair) => pair.members.length > 0).length > 0) {
 			const encodedString = encodePairs($pairs);
 			shareLink += encodedString;
 		} else {
-			shareLink = 'http://localhost:3000/';
+			shareLink = 'https://gallant-meninsky-fdbcf8.netlify.app/';
 		}
 	}
 
