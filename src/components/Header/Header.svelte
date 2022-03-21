@@ -3,18 +3,17 @@
 	import CopyToClipboard from 'svelte-copy-to-clipboard';
 	import { pairs } from '../../store/teamStore';
 	import { fade } from 'svelte/transition';
-
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { encodePairs } from '../../helpers/helpers';
 
-	let shareLink = 'https://gallant-meninsky-fdbcf8.netlify.app/?code=';
+	let shareLink = import.meta.env.VITE_SHARE_LINK_HOST;
 	let isCopySuccessful = false;
 	async function handleShareClick(e) {
 		if ($pairs.filter((pair) => pair.members.length > 0).length > 0) {
 			const encodedString = encodePairs($pairs);
 			shareLink += encodedString;
 		} else {
-			shareLink = 'https://gallant-meninsky-fdbcf8.netlify.app/';
+			shareLink = import.meta.env.VITE_SHARE_LINK_HOST;
 		}
 	}
 
