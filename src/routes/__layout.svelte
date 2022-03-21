@@ -8,7 +8,7 @@
 	import { browser } from '$app/env';
 
 	import { decodePairs } from '../helpers/helpers';
-	import Particles from '@components/Particles/particles.svelte';
+	import Particles from '@components/Particles/Particles.svelte';
 
 	let keys = [];
 
