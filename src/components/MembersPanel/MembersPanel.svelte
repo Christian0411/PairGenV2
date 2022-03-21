@@ -24,7 +24,6 @@
 			const newId = `${id}_copy_${Math.round(Math.random() * 100000)}`;
 			// the line below was added in order to be compatible with version svelte-dnd-action 0.7.4 and above
 			e.detail.items = e.detail.items.filter((item) => !item[SHADOW_ITEM_MARKER_PROPERTY_NAME]);
-			console.log('Member::', $members[idx]);
 			const originalId = $members[idx].isCopy ? $members[idx].originalId : id;
 			e.detail.items.splice(idx, 0, {
 				...$members[idx],

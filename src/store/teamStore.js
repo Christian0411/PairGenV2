@@ -1,11 +1,11 @@
 import { getRandom } from '../helpers/helpers';
 import { writable } from 'svelte/store';
 import { get } from 'svelte/store';
-
 import * as uuidv4 from 'uuid';
 import { browser } from '$app/env';
 let membersFromStorage = [];
 let pairsFromStorage = [];
+
 if (browser) {
 	membersFromStorage = JSON.parse(localStorage.getItem('members'));
 	pairsFromStorage = JSON.parse(localStorage.getItem('pairs'));
@@ -13,7 +13,6 @@ if (browser) {
 
 export const count = writable(0);
 export let members = writable(membersFromStorage || []);
-
 export let pairs = writable(pairsFromStorage || [{ locked: false, members: [] }]);
 
 export let hotKeyPressed = writable(false);
@@ -61,15 +60,12 @@ export function removeMember(memberToRemove) {
 export function setPair(pair, pairIndex) {
 	pairs.update((pairs) => {
 		let pairToSet = pairs[pairIndex];
-		// @ts-ignore
 		pairToSet.members = pair;
 		return pairs;
 	});
 }
 
 export function removeMemberFromPair(memberToRemove) {
-	console.log({ memberToRemove });
-	// @ts-ignore
 	pairs.update((pairs) => {
 		const newPairs = pairs
 			.map((pair) => ({
@@ -79,7 +75,6 @@ export function removeMemberFromPair(memberToRemove) {
 			.filter((pair) => pair.members.length !== 0);
 
 		newPairs.push({ locked: false, members: [] });
-		console.log(newPairs);
 		return newPairs;
 	});
 }

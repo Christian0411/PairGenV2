@@ -1,6 +1,6 @@
 <script>
 	import { dndzone } from 'svelte-dnd-action';
-	import { pairs, setPair, togglePairLock } from '../../store/teamStore.js';
+	import { setPair, togglePairLock } from '../../store/teamStore.js';
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
 	import { flip } from 'svelte/animate';
 	import Fa from 'svelte-fa/src/fa.svelte';
@@ -18,7 +18,6 @@
 		setPair(e.detail.items, pairIndex);
 	}
 	function handleLock(e) {
-		console.log('Hello!');
 		togglePairLock(pair);
 	}
 </script>
@@ -60,7 +59,7 @@
 		{:else}
 			{#each pair.members as member (member.id)}
 				<div animate:flip={{ duration: 100 }}>
-					<MemberBadge {member} editable={false} />
+					<MemberBadge {member} isEditing={() => {}} editable={false} />
 				</div>
 			{/each}
 		{/if}

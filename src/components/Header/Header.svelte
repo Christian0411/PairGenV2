@@ -1,6 +1,58 @@
-<div class=" items-center text-white py-12 px-5vw">
+<script>
+	import { faShareNodes } from '@fortawesome/free-solid-svg-icons/index.es';
+	import CopyToClipboard from 'svelte-copy-to-clipboard';
+	import { pairs } from '../../store/teamStore';
+	import { fade } from 'svelte/transition';
+
+	import Fa from 'svelte-fa/src/fa.svelte';
+	import { encodePairs } from '../../helpers/helpers';
+
+	let shareLink = 'http://localhost:3000/?code=';
+	let isCopySuccessful = false;
+	async function handleShareClick(e) {
+		if ($pairs.filter((pair) => pair.members.length > 0).length > 0) {
+			const encodedString = encodePairs($pairs);
+			shareLink += encodedString;
+		} else {
+			shareLink = 'http://localhost:3000/';
+		}
+	}
+
+	function handleSuccessfullyCopied() {
+		isCopySuccessful = true;
+		setTimeout(() => (isCopySuccessful = false), 2000);
+	}
+</script>
+
+<div class=" flex justify-between first-letter:items-center text-white py-12 px-5vw">
 	<nav class="flex items-center">
 		<img src="logo.png" alt="Pair Gen Logo" height="50" width="50" />
 		<span class="text-2xl ml-2 text-white">Pair Gen</span>
 	</nav>
+	<div class="flex items-center">
+		{#if isCopySuccessful}
+			<div transition:fade={{ duration: 300 }} class="p-2 bg-white shadow-md text-black rounded-sm">
+				Copied Share Link
+			</div>
+			<div
+				transition:fade={{ duration: 300 }}
+				class="w-0 h-0 border-t-8 border-b-8 border-l-8 border-t-transparent border-b-transparent border-l-white mr-2"
+			/>
+		{/if}
+		<CopyToClipboard text={shareLink} let:copy on:copy={handleSuccessfullyCopied}>
+			<button
+				on:click={async (e) => {
+					await handleShareClick(e);
+					copy(e);
+					shareLink = 'http://localhost:3000/?code=';
+				}}
+				class="bg-teal-700 shadow-md my-2 px-4  rounded-lg"
+			>
+				<div class="flex items-center">
+					<span class="m-2">Share</span>
+					<Fa icon={faShareNodes} />
+				</div>
+			</button>
+		</CopyToClipboard>
+	</div>
 </div>
