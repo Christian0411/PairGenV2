@@ -40,7 +40,7 @@
 				copy(e);
 				shareLink = import.meta.env.VITE_SHARE_LINK_HOST;
 			}}
-			class="bg-teal-700 shadow-md my-2 px-4  rounded-lg"
+			class="bg-indigo-900  shadow-md my-2 px-4 rounded-lg"
 		>
 			<div class="flex items-center">
 				<span class="m-2">Share</span>

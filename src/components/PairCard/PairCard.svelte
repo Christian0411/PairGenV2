@@ -30,7 +30,7 @@
 		{#if pair.members.length > 0}
 			<button class="text-gray-300" on:click={handleLock}>
 				{#if pair.locked}
-					<Fa class="mr-1 text-red-900" icon={faLock} />
+					<Fa class="mr-1  text-red-900" icon={faLock} />
 				{:else}
 					<Fa icon={faLockOpen} />
 				{/if}
