@@ -9,9 +9,9 @@
 
 	let shareLink = import.meta.env.VITE_SHARE_LINK_HOST;
 	let isCopySuccessful = false;
-	let copyVerbiage = 'Share Link';
+	let copyVerbiage = 'Link to Clipboard';
 	async function handleShareClick(e) {
-		copyVerbiage = 'Share Link';
+		copyVerbiage = 'Link to Clipboard';
 		if ($pairs.filter((pair) => pair.members.length > 0).length > 0) {
 			const encodedString = encodePairs($pairs);
 			shareLink += encodedString;
@@ -25,7 +25,7 @@
 		setTimeout(() => (isCopySuccessful = false), 2000);
 	}
 	function handleScreenshot() {
-		copyVerbiage = 'Screenshot';
+		copyVerbiage = 'Screenshot to Clipboard';
 		isCopySuccessful = true;
 		setTimeout(() => (isCopySuccessful = false), 2000);
 		const input = document.getElementById('capture');

@@ -29,21 +29,25 @@
 </script>
 
 <Hoverable let:hovering={active}>
-	<div class={`p-2 rounded-xl text-center shadow-sm shadow-black  bg-teal-700 `}>
+	<div class={`rounded-xl text-center shadow-sm shadow-black  bg-teal-700 `}>
 		{#if active && !editing && editable}
-			<div class="flex justify-center content-center">
+			<div class="grid grid-flow-col content-center">
 				<button
-					class="mr-4"
+					class="h-10 flex col-span-1 justify-center items-center"
 					on:click={() => {
 						editing = true;
 						isEditing(editing);
 					}}><Fa icon={faPencil} /></button
 				>
-				<div>{member.name}</div>
-				<button class="ml-4" on:click={handleDelete}><Fa icon={faTrash} /></button>
+				<div class="flex col-span-2 justify-center items-center">
+					{member.name}
+				</div>
+				<button class="flex col-span-1 justify-center items-center" on:click={handleDelete}
+					><Fa icon={faTrash} /></button
+				>
 			</div>
 		{:else if !editing}
-			{member.name}
+			<div class="flex justify-center content-center items-center h-10">{member.name}</div>
 		{/if}
 		{#if editing}
 			<AutoFocusInput

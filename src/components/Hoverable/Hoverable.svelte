@@ -7,6 +7,7 @@
 
 	function leave() {
 		hovering = false;
+		console.log('here');
 	}
 </script>
 

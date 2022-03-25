@@ -2,7 +2,12 @@
 	import { flip } from 'svelte/animate';
 	import Dice from '@components/Dice/Dice.svelte';
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
-	import { dndzone, TRIGGERS, SHADOW_ITEM_MARKER_PROPERTY_NAME } from 'svelte-dnd-action';
+	import {
+		dndzone,
+		TRIGGERS,
+		SHADOW_ITEM_MARKER_PROPERTY_NAME,
+		DRAGGED_ELEMENT_ID
+	} from 'svelte-dnd-action';
 
 	import { members, addMember, removeMemberFromPair } from '../../store/teamStore.js';
 
@@ -18,6 +23,7 @@
 	let shouldIgnoreDndEvents = false;
 	function handleDndConsider(e) {
 		const { trigger, id } = e.detail.info;
+
 		if (trigger === TRIGGERS.DRAG_STARTED) {
 			const idx = $members.findIndex((item) => item.id === id);
 			removeMemberFromPair($members[idx]);
