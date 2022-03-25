@@ -1,6 +1,6 @@
 # PairGenV2
 
-PairGen is a tool to generate pairs of software engineering to facilitate pair programming. It is written using Svelte and TailWindCSS. It's deployed to https://pairgen.dev/ using netlify.app
+PairGen is a tool to generate random pairs of software engineers to facilitate pair programming. It is written using Svelte and TailWindCSS. It's deployed to https://pairgen.dev/ using netlify.app
 
 ## Developing
 
