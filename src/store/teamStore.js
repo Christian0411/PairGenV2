@@ -66,7 +66,9 @@ export function setPair(pair, pairIndex) {
 		return pairs;
 	});
 }
-
+export function clearAllPairs() {
+	pairs.set([emptyPair]);
+}
 export function removeMemberFromPair(memberToRemove) {
 	pairs.update((pairs) => {
 		const newPairs = pairs

@@ -2,14 +2,13 @@
 	import { flip } from 'svelte/animate';
 	import Dice from '@components/Dice/Dice.svelte';
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
+	import { dndzone, TRIGGERS, SHADOW_ITEM_MARKER_PROPERTY_NAME } from 'svelte-dnd-action';
 	import {
-		dndzone,
-		TRIGGERS,
-		SHADOW_ITEM_MARKER_PROPERTY_NAME,
-		DRAGGED_ELEMENT_ID
-	} from 'svelte-dnd-action';
-
-	import { members, addMember, removeMemberFromPair } from '../../store/teamStore.js';
+		members,
+		addMember,
+		removeMemberFromPair,
+		clearAllPairs
+	} from '../../store/teamStore.js';
 
 	let addMemberValue = '';
 	let isMemberBeingEdited = false;
@@ -60,6 +59,7 @@
 >
 	<div class="flex flex-row place-content-between mb-3">
 		<h1 class="text-2xl">Members</h1>
+
 		<button on:click><Dice width="30px" height="30px" /></button>
 	</div>
 
@@ -94,4 +94,5 @@
 			</div>
 		{/each}
 	</section>
+	<button on:click={clearAllPairs} class="p-2 bg-gray-900 mt-2 rounded-lg ">Clear All Pairs</button>
 </div>
