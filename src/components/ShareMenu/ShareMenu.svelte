@@ -11,7 +11,6 @@
 	let isCopySuccessful = false;
 	let copyVerbiage = 'Link to Clipboard';
 	async function handleShareClick(e) {
-		console.log(shareLink);
 		copyVerbiage = 'Link to Clipboard';
 		if ($pairs.filter((pair) => pair.members.length > 0).length > 0) {
 			const encodedString = encodePairs($pairs);
