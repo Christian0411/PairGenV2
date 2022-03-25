@@ -29,11 +29,11 @@
 </script>
 
 <Hoverable let:hovering={active}>
-	<div class={`rounded-xl text-center shadow-sm shadow-black  bg-teal-700 `}>
+	<div class={`p-2 rounded-xl text-center shadow-sm shadow-black  bg-teal-700 `}>
 		{#if active && !editing && editable}
 			<div class="grid grid-flow-col content-center">
 				<button
-					class="h-10 flex col-span-1 justify-center items-center"
+					class="flex col-span-1 justify-center items-center"
 					on:click={() => {
 						editing = true;
 						isEditing(editing);
@@ -47,7 +47,7 @@
 				>
 			</div>
 		{:else if !editing}
-			<div class="flex justify-center content-center items-center h-10">{member.name}</div>
+			{member.name}
 		{/if}
 		{#if editing}
 			<AutoFocusInput
