@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Input from '@components/Input/Input.svelte';
+
 	export let value;
 
 	function init(el) {
@@ -7,4 +9,4 @@
 	}
 </script>
 
-<input {...$$restProps} bind:value on:blur on:keyup use:init />
+<Input {...$$restProps} action={init} bind:value on:blur on:keyup />

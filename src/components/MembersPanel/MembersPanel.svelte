@@ -1,6 +1,7 @@
 <script>
 	import { flip } from 'svelte/animate';
 	import Dice from '@components/Dice/Dice.svelte';
+	import Input from '@components/Input/Input.svelte';
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
 	import { dndzone, TRIGGERS, SHADOW_ITEM_MARKER_PROPERTY_NAME } from 'svelte-dnd-action';
 	import {
@@ -64,7 +65,7 @@
 	</div>
 
 	<div class="flex my-2 rounded-xl text-center shadow-sm shadow-black p-2 bg-teal-700">
-		<input
+		<Input
 			class="flex-1 bg-teal-700 outline-none text-center"
 			bind:value={addMemberValue}
 			on:keyup={handleMemberInputKeyUp}

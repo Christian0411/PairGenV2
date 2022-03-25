@@ -2,8 +2,8 @@
 	import { removeMember, updateMemberName } from '../../store/teamStore';
 	import Hoverable from '@components/Hoverable/Hoverable.svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faTrash, faPencil, faHand } from '@fortawesome/free-solid-svg-icons/index.es';
-	import AutoFocusInput from '@components/AutoFocusInput/AutoFocusInput.svelte';
+	import { faTrash, faPencil } from '@fortawesome/free-solid-svg-icons/index.es';
+	import Input from '@components/Input/Input.svelte';
 
 	export let editable;
 	export let member;
@@ -50,8 +50,9 @@
 			{member.name}
 		{/if}
 		{#if editing}
-			<AutoFocusInput
+			<Input
 				class="bg-teal-700 outline-none text-center"
+				autofocus
 				bind:value={editedNameValue}
 				on:keyup={handleKeyUp}
 				on:blur={dispatchEditEvent}
