@@ -9,7 +9,7 @@
 	}
 </script>
 
-<div class="px-5vw text-white flex">
+<div id="capture" class="px-5vw text-white flex">
 	<MembersPanel on:click={generatePairs} />
 
 	<div class="flex ml-10 max-w-screen-lg flex-wrap h-1">

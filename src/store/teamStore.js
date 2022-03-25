@@ -3,6 +3,7 @@ import { writable } from 'svelte/store';
 import { get } from 'svelte/store';
 import * as uuidv4 from 'uuid';
 import { browser } from '$app/env';
+import { empty } from 'svelte/internal';
 let membersFromStorage = [];
 let pairsFromStorage = [];
 
@@ -12,6 +13,7 @@ if (browser) {
 }
 
 export const count = writable(0);
+export const emptyPair = { locked: false, members: [] };
 export let members = writable(membersFromStorage || []);
 export let pairs = writable(pairsFromStorage || [{ locked: false, members: [] }]);
 

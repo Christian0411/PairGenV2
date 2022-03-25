@@ -1,6 +1,6 @@
 <script>
-	import { dndzone } from 'svelte-dnd-action';
-	import { setPair, togglePairLock } from '../../store/teamStore.js';
+	import { dndzone, TRIGGERS } from 'svelte-dnd-action';
+	import { emptyPair, pairs, setPair, togglePairLock } from '../../store/teamStore.js';
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
 	import { flip } from 'svelte/animate';
 	import Fa from 'svelte-fa/src/fa.svelte';

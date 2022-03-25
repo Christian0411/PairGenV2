@@ -14,7 +14,7 @@
 	let particlesConfig = {
 		particles: {
 			number: {
-				value: $pairs.length > 1 ? 50 : 0
+				value: 50
 			},
 			fullscreen: {
 				zIndex: -1

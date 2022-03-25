@@ -4,7 +4,7 @@
 	import MemberBadge from '@components/MemberBadge/MemberBadge.svelte';
 	import { dndzone, TRIGGERS, SHADOW_ITEM_MARKER_PROPERTY_NAME } from 'svelte-dnd-action';
 
-	import { members, addMember, pairs, removeMemberFromPair } from '../../store/teamStore.js';
+	import { members, addMember, removeMemberFromPair } from '../../store/teamStore.js';
 
 	let addMemberValue = '';
 	let isMemberBeingEdited = false;
@@ -50,7 +50,7 @@
 </script>
 
 <div
-	class="bg-slate-600 w-60 max-h-80vh overflow-autog shadow-sm rounded-lg  shadow-black p-2 flex flex-col"
+	class="bg-slate-600 w-60 max-h-80vh overflow-auto  shadow-sm rounded-lg  shadow-black p-2 flex flex-col"
 >
 	<div class="flex flex-row place-content-between mb-3">
 		<h1 class="text-2xl">Members</h1>
