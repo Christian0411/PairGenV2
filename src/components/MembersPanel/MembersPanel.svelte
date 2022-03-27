@@ -56,7 +56,7 @@
 </script>
 
 <div
-	class="bg-slate-600 w-60 max-h-80vh overflow-auto  shadow-sm rounded-lg  shadow-black p-2 flex flex-col"
+	class="bg-slate-600 min-w-min w-60 max-h-80vh overflow-auto  shadow-sm rounded-lg  shadow-black p-2 flex flex-col"
 >
 	<div class="flex flex-row place-content-between mb-3">
 		<h1 class="text-2xl">Members</h1>
