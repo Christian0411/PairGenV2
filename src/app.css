@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-	background-color: #181823;
+  background-color: #181823;
 }
 
 div {
-	z-index: 100;
+  z-index: 100;
 }
