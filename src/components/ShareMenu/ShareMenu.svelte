@@ -47,7 +47,10 @@
 
 <div class="flex items-center">
 	{#if isCopySuccessful}
-		<div transition:fade={{ duration: 300 }} class="p-2 bg-white shadow-md text-black rounded-sm">
+		<div
+			transition:fade={{ duration: 300 }}
+			class="p-2 bg-white shadow-md text-black rounded-sm relative z-20"
+		>
 			Copied {copyVerbiage}
 		</div>
 		<div

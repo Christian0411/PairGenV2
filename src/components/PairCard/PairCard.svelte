@@ -23,7 +23,7 @@
 </script>
 
 <div
-	class="transition-translate ml-4 mb-10 bg-slate-600 w-60 shadow-sm rounded-lg self-start shadow-black p-2 flex flex-col gap-y-2"
+	class="transition-translate m-0 mb-4 md:mx-4 bg-slate-600 w-60 shadow-sm rounded-lg self-start shadow-black p-2 flex flex-col gap-y-2"
 >
 	<div class="flex justify-between">
 		<span>Pair {id}</span>

@@ -11,10 +11,13 @@
 	}
 </script>
 
-<div id="capture" class="px-5vw text-white flex">
+<div
+	id="capture"
+	class="flex px-5vw text-white flex-col md:flex-row md:justify-start  md:items-start items-center justify-center"
+>
 	<MembersPanel on:click={generatePairs} />
 
-	<div class="flex ml-10 max-w-screen-lg flex-wrap h-1">
+	<div class="flex ml-0 mt-4 flex-wrap flex-col md:flex-row md:ml-10 md:mt-0 ">
 		{#each $pairs as pair, i (i)}
 			<div in:fade={{ duration: 100 }} out:fade={{ duration: 100 }}>
 				<PairCard {pair} id={i} />
