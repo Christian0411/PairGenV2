@@ -17,17 +17,18 @@
 </script>
 
 <div
-  id="capture"
   class="flex flex-col items-center justify-center px-5vw text-white  md:flex-row md:items-start md:justify-start"
 >
   <MembersPanel on:click={generatePairs} />
 
-  <div class="ml-0 mt-4 flex flex-col flex-wrap md:ml-10 md:mt-0 md:flex-row ">
+  <div
+    id="capture"
+    class="ml-0 mt-4 flex flex-col flex-wrap md:ml-10 md:mt-0 md:flex-row "
+  >
     {#each $pairs as pair, i (i)}
       <div in:fade={{ duration: 100 }} out:fade={{ duration: 100 }}>
         <PairCard {pair} id={i} />
       </div>
     {/each}
-    <div />
   </div>
 </div>

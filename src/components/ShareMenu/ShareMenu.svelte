@@ -33,17 +33,28 @@
     setTimeout(() => (isCopySuccessful = false), 2000);
     const input = document.getElementById("capture");
     if (input) {
-      domtoimage.toPng(input, { bgcolor: "#181823" }).then(function (dataUrl) {
-        const blob = dataURItoBlob(dataUrl);
-        navigator.clipboard.write([
-          new ClipboardItem(
-            Object.defineProperty({}, blob.type, {
-              value: blob,
-              enumerable: true,
-            })
-          ),
-        ]);
-      });
+      domtoimage
+        .toPng(input, {
+          bgcolor: "#181823",
+          style: {
+            display: "flex",
+            padding: "0px",
+            margin: "0px",
+            "justify-content": "center",
+            "align-items": "center",
+          },
+        })
+        .then(function (dataUrl) {
+          const blob = dataURItoBlob(dataUrl);
+          navigator.clipboard.write([
+            new ClipboardItem(
+              Object.defineProperty({}, blob.type, {
+                value: blob,
+                enumerable: true,
+              })
+            ),
+          ]);
+        });
     }
   }
 </script>
