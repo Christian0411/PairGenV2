@@ -39,6 +39,7 @@
           style: {
             display: "flex",
             padding: "0px",
+            "padding-top": "8px",
             margin: "0px",
             "justify-content": "center",
             "align-items": "center",
